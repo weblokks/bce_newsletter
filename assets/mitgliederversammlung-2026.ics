@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Basketball Club Erfurt e.V.//Vereinsnews//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:mv-2026@bcerfurt.de
+DTSTAMP:20261013T080000Z
+DTSTART:20261205T090000Z
+DTEND:20261205T110000Z
+SUMMARY:Mitgliederversammlung BC Erfurt
+LOCATION:Landessportbund Thüringen\, Seminarraum 129\, Werner-Seelenbinder-Straße 1\, 99096 Erfurt
+DESCRIPTION:Mitgliederversammlung 2026 des Basketball Club Erfurt e.V. mit Vorstandswahlen.
+ORGANIZER;CN=Basketball Club Erfurt e.V.:mailto:vorstand@bcerfurt.de
+END:VEVENT
+END:VCALENDAR

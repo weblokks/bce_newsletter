@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Basketball Club Erfurt e.V.//Vereinsnews//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:ue40-landesfinale-2026@bcerfurt.de
+DTSTAMP:20261013T080000Z
+DTSTART:20261121T130000Z
+DTEND:20261121T183000Z
+SUMMARY:Ü40-Landesfinale mit dem BC Erfurt
+LOCATION:Fit-In\, Osterlange 13\, 99189 Elxleben
+DESCRIPTION:14:00 Halbfinale SG BC Erfurt / BBC Mühlhausen gegen Culture City Weimar. 16:00 Halbfinale Science City Jena gegen USV Erfurt. 18:00 Finale.
+ORGANIZER;CN=Basketball Club Erfurt e.V.:mailto:vorstand@bcerfurt.de
+END:VEVENT
+END:VCALENDAR
