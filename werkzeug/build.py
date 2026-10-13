@@ -411,7 +411,7 @@ def content_frauen(b, t):
               b.ptag("<strong>Ort:</strong> " + b.a(UE40_MAPS_URL, "Fit-In, Osterlange 13, 99189 Elxleben") +
                      ". Für Catering und ausreichend Sitzplätze ist gesorgt.", size=15, top=12) +
               sp + b.button(UE40_CAL_URL, "Im Kalender eintragen") +
-              ("" if b.mode == "gmail" else b.ptag("Apple Kalender oder Outlook? " + b.a(UE40_ICS_URL, "Termin als Datei laden (.ics)"), size=13, color=t["muted"], top=10)),
+              ("" if b.mode == "gmail" or not WEB_PAGES else b.ptag("Apple Kalender oder Outlook? " + b.a(UE40_ICS_URL, "Termin als Datei laden (.ics)"), size=13, color=t["muted"], top=10)),
               top=GAP_BLOCK),
 
         b.divider(),
