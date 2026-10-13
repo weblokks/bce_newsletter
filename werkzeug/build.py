@@ -52,7 +52,7 @@ ISSUES = {
         subject="Neues aus dem #bcerfurt: Frauen-Basketball",
         preheader="Außerdem: REWE Scheine noch bis 25. Oktober zuordnen und unsere Ü40 im Landesfinale am 21. November.",
         rewe=(1438, 2670, "13.10.2026"),
-        assets=("2026-10-ue40.jpg", "bce-logo-header.png"),
+        assets=("2026-10-frauen.jpg", "2026-10-ue40.jpg", "bce-logo-header.png"),
     ),
 }
 CUR = {}   # wird in build() gesetzt
@@ -375,7 +375,7 @@ def content_frauen(b, t):
         b.p("wir haben gute Nachrichten: Der BC Erfurt bekommt eine neue Trainingsgruppe. Außerdem geht es um den Endspurt "
             "bei REWE und um ein Landesfinale, bei dem wir eure Unterstützung von der Tribüne brauchen."),
 
-        b.box(b.label("Neu ab sofort") + b.h3("Basketball für Mädchen und Frauen", level=2) +
+        b.box(b.img("2026-10-frauen.jpg", 484, 363, "Basketballerin im weißen Trikot hält den Ball wurfbereit über dem Kopf in einer hellen Sporthalle") + b.label("Neu ab sofort") + b.h3("Basketball für Mädchen und Frauen", level=2) +
               b.ptag("Ab sofort gibt es beim BC Erfurt ein Angebot, das sich speziell an Mädchen und Frauen richtet. "
                      "Dafür haben wir mit <strong>Elena Faytelson</strong> eine neue Trainerin gewonnen.", size=15, top=10) +
               b.ptag("Das Freizeitangebot ist für alle gedacht, die bisher wenig mit Basketball zu tun hatten und sich gern einmal "
