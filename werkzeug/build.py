@@ -320,6 +320,21 @@ def content_einladung(b, t):
     ])
 
 
+def prooptik_box(b, t, sp, label="Partner-Aktion · 8. bis 10. Dezember", hint=""):
+    return b.box(b.label(label) + b.h3("Gesundheitstage bei pro optik", level=2) +
+              b.ptag("Unser Partner pro optik lädt alle BCE-Mitglieder, ihre Familien und Freunde zu den Gesundheitstagen ein. "
+                     "Vom <strong>8. bis 10. Dezember</strong>, jeweils 9:00 bis 18:00 Uhr, bekommt ihr in beiden Erfurter Filialen "
+                     "einen professionellen Sehtest (ab 10 Jahren), eine Augeninnendruckmessung (ab 18 Jahren) und einen Hörtest.", size=15, top=10) +
+              '<div style="height:12px;line-height:12px;font-size:1px;">&nbsp;</div>' +
+              b.kv_table([("30 %", "auf alle Brillen mit Sehstärke"), ("10 %", "auf alle Sonnenbrillen ohne Sehstärke")],
+                         key_w=64, key_strong=True, val_strong=False) +
+              b.ptag("Partner-Vorteile für BCE-Mitglieder, einzelne Produkte sind ausgenommen.", size=13, color=t["muted"], top=6) +
+              b.ptag("<strong>Filialen:</strong> Bahnhofstraße 39 und Mainzerhofplatz 14, 99084 Erfurt. "
+                     "Damit alles reibungslos läuft, bucht bitte vorab online einen Termin.", size=15, top=12) +
+              (b.ptag(hint, size=15, top=10) if hint else "") +
+              sp + b.button(PROOPTIK_URL, "Termin buchen"), top=GAP_BLOCK)
+
+
 def content_news(b, t):
     c = parts(b, t)
     sp = c["spacer"]
@@ -342,17 +357,7 @@ def content_news(b, t):
                      "Die Scheine werden bis zum <strong>11. Oktober</strong> ausgegeben, zuordnen könnt ihr sie bis zum <strong>25. Oktober</strong>. "
                      "Fragt auch Großeltern, Nachbarn und Kollegen nach ihren Scheinen.", size=15, top=10) +
               rewe_bar(b, t) + sp + b.button(REWE_URL, "Scheine zuordnen"), top=GAP_BLOCK),
-        b.box(b.label("Partner-Aktion · 8. bis 10. Dezember") + b.h3("Gesundheitstage bei pro optik", level=2) +
-              b.ptag("Unser Partner pro optik lädt alle BCE-Mitglieder, ihre Familien und Freunde zu den Gesundheitstagen ein. "
-                     "Vom <strong>8. bis 10. Dezember</strong>, jeweils 9:00 bis 18:00 Uhr, bekommt ihr in beiden Erfurter Filialen "
-                     "einen professionellen Sehtest (ab 10 Jahren), eine Augeninnendruckmessung (ab 18 Jahren) und einen Hörtest.", size=15, top=10) +
-              '<div style="height:12px;line-height:12px;font-size:1px;">&nbsp;</div>' +
-              b.kv_table([("30 %", "auf alle Brillen mit Sehstärke"), ("10 %", "auf alle Sonnenbrillen ohne Sehstärke")],
-                         key_w=64, key_strong=True, val_strong=False) +
-              b.ptag("Partner-Vorteile für BCE-Mitglieder, einzelne Produkte sind ausgenommen.", size=13, color=t["muted"], top=6) +
-              b.ptag("<strong>Filialen:</strong> Bahnhofstraße 39 und Mainzerhofplatz 14, 99084 Erfurt. "
-                     "Damit alles reibungslos läuft, bucht bitte vorab online einen Termin.", size=15, top=12) +
-              sp + b.button(PROOPTIK_URL, "Termin buchen"), top=GAP_BLOCK),
+        prooptik_box(b, t, sp),
         b.box(b.label("@bcerfurt") + b.h3("Wir sind auf TikTok", level=2) +
               b.ptag("Spielszenen, Trainingsmomente und Teamgeist aus Erfurt. Wir stehen kurz vor unseren ersten 100 Followern. "
                      "Folgt dem Kanal und teilt die Videos mit Freunden und Familie, damit noch mehr Kinder in Erfurt Basketball für sich entdecken.", size=15, top=10) +
@@ -373,10 +378,10 @@ def content_frauen(b, t):
         b.row(b.label("Oktober 2026") + b.h1("Neues aus dem #bcerfurt"), top=GAP_SECTION),
         b.p("Liebe Mitglieder, liebe Eltern,", top=GAP_BOX),
         b.p("wir haben gute Nachrichten: Der BC Erfurt bekommt eine neue Trainingsgruppe. Außerdem geht es um den Endspurt "
-            "bei REWE und um ein Landesfinale, bei dem wir eure Unterstützung von der Tribüne brauchen."),
+            "bei REWE, um ein Landesfinale, bei dem wir eure Unterstützung von der Tribüne brauchen, und um die Gesundheitstage bei pro optik."),
 
         b.box(b.img("2026-10-frauen.jpg", 484, 363, "Basketballerin im weißen Trikot hält den Ball wurfbereit über dem Kopf in einer hellen Sporthalle") + b.label("Neu ab sofort") + b.h3("Basketball für Mädchen und Frauen", level=2) +
-              b.ptag("Ab sofort gibt es beim BC Erfurt ein Angebot, das sich speziell an Mädchen und Frauen richtet. "
+              b.ptag("Ab sofort gibt es beim BC Erfurt ein Angebot, das sich speziell an Mädchen ab 16 Jahren und Frauen richtet. "
                      "Dafür haben wir mit <strong>Elena Faytelson</strong> eine neue Trainerin gewonnen.", size=15, top=10) +
               b.ptag("Das Freizeitangebot ist für alle gedacht, die bisher wenig mit Basketball zu tun hatten und sich gern einmal "
                      "ausprobieren möchten. Vorkenntnisse braucht ihr keine.", size=15, top=10) +
@@ -384,6 +389,7 @@ def content_frauen(b, t):
               b.kv_table([
                   ("Wann", "dienstags<br><span style=\"font-weight:normal;\">19:15 bis 20:30 Uhr</span>"),
                   ("Wo", b.a(DOMSPORTHALLE_MAPS_URL, "Domsporthalle Erfurt", bold=True, color=s)),
+                  ("Für", "Mädchen ab 16 Jahren und Frauen"),
                   ("Trainerin", "Elena Faytelson"),
               ], key_w=72) +
               b.ptag("Sagt es gern weiter an Freundinnen, Mütter, Töchter und Kolleginnen. "
@@ -413,6 +419,10 @@ def content_frauen(b, t):
               sp + b.button(UE40_CAL_URL, "Im Kalender eintragen") +
               ("" if b.mode == "gmail" or not WEB_PAGES else b.ptag("Apple Kalender oder Outlook? " + b.a(UE40_ICS_URL, "Termin als Datei laden (.ics)"), size=13, color=t["muted"], top=10)),
               top=GAP_BLOCK),
+
+        prooptik_box(b, t, sp, label="Erinnerung · Termin bis Anfang November buchen",
+                     hint="Damit pro optik das Personal planen kann, bucht euren Termin bitte möglichst <strong>bis Anfang November</strong>. "
+                          "Spätere Buchungen sind natürlich trotzdem möglich."),
 
         b.divider(),
         c["mv_hint"],
