@@ -54,6 +54,14 @@ ISSUES = {
         rewe=(1438, 2670, "13.10.2026"),
         assets=("2026-10-frauen.jpg", "2026-10-ue40.jpg", "bce-logo-header.png"),
     ),
+    "feueralarm": dict(
+        slug="2026-11-feueralarm-suedpark",
+        file="BCE_2026-11_Feueralarm-Halle-Suedpark",
+        campaign="2026-11-feueralarm",
+        subject="Feueralarm in der Halle am Südpark: Konsequenzen und Regeln",
+        preheader="Zweimal in einer Woche musste die Feuerwehr ausrücken. Was passiert ist, was jetzt gilt und worum wir euch bitten.",
+        assets=("bce-logo-header.png",),
+    ),
 }
 CUR = {}   # wird in build() gesetzt
 
@@ -431,7 +439,81 @@ def content_frauen(b, t):
     ])
 
 
-CONTENT = {"einladung": content_einladung, "news": content_news, "frauen": content_frauen}
+def content_feueralarm(b, t):
+    c = parts(b, t)
+    rules = [
+        ("Keine Deosprays in der Halle.",
+         "Deosprays sind in Umkleiden und Duschen verboten. Ab sofort gilt das für die gesamte Halle: Sprays bleiben zu Hause. "
+         "Erlaubt sind Roller, Stick oder Creme. Wer mit Spray erwischt wird, verlässt das Training."),
+        ("Kein Rauchen, keine E-Zigaretten.",
+         "Rauchen und E-Zigaretten sind in und an der Halle verboten. Für Minderjährige verbietet das ohnehin das Jugendschutzgesetz. "
+         "Verstöße melden wir den Eltern."),
+        ("Umkleiden nur für das eigene Team.",
+         "Die Umkleiden sind nur für die Spieler*innen des jeweiligen Teams da. Gäste und Zuschauer*innen haben dort nichts zu suchen. "
+         "Wer Freund*innen zum Zuschauen mitbringen möchte, spricht das vorher mit dem Trainerteam ab und trägt die Verantwortung für die Gäste."),
+        ("Absichtlicher Alarm hat Folgen.",
+         "Wer künftig absichtlich einen Alarm auslöst, wird gesperrt und trägt die entstandenen Kosten. "
+         "Im Wiederholungsfall muss er oder sie mit dem Vereinsausschluss und einer Anzeige rechnen."),
+    ]
+    rule_rows = "".join(
+        f'<tr><td valign="top" width="40" style="{"border-top:1px solid " + t["line"] + ";" if i > 1 else ""}padding:14px 0;'
+        f'font-family:{HEAD};font-size:22px;line-height:24px;color:{RED};">{i:02d}</td>'
+        f'<td valign="top" style="{"border-top:1px solid " + t["line"] + ";" if i > 1 else ""}padding:14px 0;">'
+        f'<p style="margin:0;font-family:{BODY};font-size:16px;line-height:22px;font-weight:bold;color:{t["heading"]};">{head}</p>'
+        f'<p style="margin:4px 0 0 0;font-family:{BODY};font-size:15px;line-height:23px;color:{t["text"]};">{body}</p></td></tr>'
+        for i, (head, body) in enumerate(rules, 1))
+    rule_table = f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">{rule_rows}</table>'
+    return "".join([
+        b.row(b.label("Mitteilung des Vorstands") + b.h1("Feueralarm in der Halle am Südpark"), top=GAP_SECTION),
+        b.p("Liebe Mitglieder, liebe Eltern,", top=GAP_BOX),
+        b.p("in dieser Woche haben Spieler unseres Vereins zweimal absichtlich den Feueralarm in der Sporthalle am Südpark ausgelöst. "
+            "Beide Male ist die Feuerwehr ausgerückt, am Dienstag mit drei Löschfahrzeugen, am Donnerstag mit einem. "
+            "Wir sind darüber gleichermaßen verärgert wie enttäuscht und werden das nicht hinnehmen."),
+
+        b.h2("Was passiert ist"),
+        b.p("<strong>Dienstag:</strong> Ein Spieler hat während seiner Trainingszeit in einer Umkleide so viel Deospray versprüht, "
+            "dass die Brandmeldeanlage auslöste. Die Flasche lag danach noch in der Kabine. "
+            "An den Umkleidetüren hängen Schilder, die das Sprühen dort verbieten."),
+        b.p("<strong>Donnerstag:</strong> Nur zwei Tage später lief es fast genauso ab. Drei Spieler hatten drei Freunde mitgebracht, "
+            "die nicht im Verein sind. Die drei fragten, ob sie beim Training zuschauen dürfen, und der Trainer erlaubte das. "
+            "Während des Trainings ging die Gruppe in eine Umkleide. Dort wurde erneut Deospray versprüht und mit großer "
+            "Wahrscheinlichkeit eine E-Zigarette benutzt. Kurz nachdem der Alarm auslöste, kamen alle sechs aus der Umkleide "
+            "und wurden dabei vom Trainer gesehen. Die Kabine roch danach stark nach Deo und nach dem Rauch einer E-Zigarette."),
+        b.p("Wir müssen deshalb davon ausgehen, dass beide Alarme absichtlich ausgelöst wurden."),
+
+        b.h2("Warum das so ernst ist"),
+        b.p("Die Brandmeldeanlage der Halle ist direkt mit der Feuerwehr verbunden. Jeder Alarm führt also zu einem echten Einsatz. "
+            "Die Einsatzkräfte, die dann zu uns fahren, fehlen bei einem echten Brand oder Unfall woanders. "
+            "Außerdem kosten die Einsätze Geld."),
+        b.p("Dazu kommt unsere Hallensituation: Der Erfurter Sportbetrieb vergibt Hallenzeiten an Vereine, auf die er sich verlassen kann. "
+            "Wer zweimal in einer Woche die Feuerwehr in die Halle holt, setzt die <strong>Hallenzeiten aller Teams</strong> aufs Spiel."),
+
+        b.box(b.label("Konsequenzen") + b.h3("Für die Beteiligten", level=2) +
+              b.ptag("Die beteiligten Spieler werden für Training und Spielbetrieb gesperrt und leisten eine Wiedergutmachung im Verein. "
+                     "Die Dauer der Sperre richtet sich auch danach, ob jemand offen zu seinem Verhalten steht.", size=15, top=10) +
+              b.ptag("Die Eltern beteiligen wir an den Kosten der Feuerwehreinsätze, sobald uns diese in Rechnung gestellt werden. "
+                     "Mit den Familien sprechen wir persönlich.", size=15, top=10) +
+              b.ptag("<strong>Wer noch einmal auffällt, muss mit dem Vereinsausschluss rechnen.</strong>", size=15, top=10),
+              top=GAP_SECTION),
+
+        b.divider(),
+        b.h2("Regeln für alle"),
+        b.p("Die meisten dieser Regeln gelten schon lange. Sie stehen an den Umkleidetüren und in der Hallenordnung, "
+            "wurden aber offensichtlich nicht von allen ernst genommen. Deshalb hier noch einmal für alle:"),
+        b.row(rule_table, top=8),
+
+        b.box(b.label("Bis Sonntag, 22. November") + b.h3("Bitte in allen Teams besprechen", level=2) +
+              b.ptag("Alle Trainer*innen sprechen diese Regeln in ihren Teams an, auch in Teams, die mit den Vorfällen nichts zu tun haben.", size=15, top=10) +
+              b.ptag("Liebe Eltern, bitte sprecht auch zu Hause mit euren Kindern darüber. Duschen nach dem Training ist ohnehin "
+                     "hygienischer und gesünder als jedes Deo. Wer trotzdem eines braucht, packt einen Roller oder Stick in die Sporttasche.", size=15, top=10),
+              top=GAP_BOX),
+
+        c["sig"]("Der allergrößte Teil von euch verhält sich in der Halle einwandfrei. "
+                 "Umso mehr ärgert es uns, dass einige wenige die Trainingszeiten aller gefährden."),
+    ])
+
+
+CONTENT = {"einladung": content_einladung, "news": content_news, "frauen": content_frauen, "feueralarm": content_feueralarm}
 
 
 def build(key, issue, mode="send"):
